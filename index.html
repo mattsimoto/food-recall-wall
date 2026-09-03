@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A market-wall style dashboard for active U.S. food recalls from FDA and USDA FSIS." />
+  <title>Food Recall Wall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">FDA + USDA FSIS // PUBLIC DATA</div>
+      <h1>FOOD RECALL WALL</h1>
+    </div>
+    <div class="market-clock">
+      <span class="pulse"></span>
+      <span id="statusText">LOADING MARKET</span>
+      <span id="updatedAt"></span>
+    </div>
+  </header>
+
+  <section class="ticker" aria-label="Recall summary">
+    <div><span>ACTIVE</span><strong id="activeCount">—</strong></div>
+    <div><span>CLASS I / HIGH</span><strong id="highCount">—</strong></div>
+    <div><span>NATIONWIDE</span><strong id="nationwideCount">—</strong></div>
+    <div><span>NEW 7D</span><strong id="newCount">—</strong></div>
+    <div><span>TOP CATEGORY</span><strong id="topCategory">—</strong></div>
+  </section>
+
+  <main>
+    <section class="controls" aria-label="Filters">
+      <div class="filter-group" id="categoryFilters"></div>
+      <div class="right-controls">
+        <label>AGENCY
+          <select id="agencyFilter">
+            <option value="all">ALL</option>
+            <option value="FDA">FDA</option>
+            <option value="USDA FSIS">USDA FSIS</option>
+          </select>
+        </label>
+        <label>SORT
+          <select id="sortFilter">
+            <option value="impact">IMPACT</option>
+            <option value="newest">NEWEST</option>
+            <option value="scope">SCOPE</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="wall-shell">
+      <div class="wall-head">
+        <div>
+          <span class="section-code">US / ACTIVE RECALLS</span>
+          <h2>Impact Wall</h2>
+        </div>
+        <div class="legend">
+          <span><i class="swatch critical"></i> CLASS I / HIGH</span>
+          <span><i class="swatch medium"></i> CLASS II / MED</span>
+          <span><i class="swatch low"></i> CLASS III / LOW</span>
+        </div>
+      </div>
+
+      <div class="map-stage" id="mapStage">
+        <div class="us-grid" id="usGrid" aria-label="Block map of the United States"></div>
+        <div class="recall-layer" id="recallLayer"></div>
+        <div class="nationwide-rail" id="nationwideRail"></div>
+      </div>
+    </section>
+
+    <section class="leaderboard-shell">
+      <div class="wall-head">
+        <div>
+          <span class="section-code">RANKED / LIVE</span>
+          <h2>Recall Leaders</h2>
+        </div>
+        <span class="muted">Click any row for official recall details</span>
+      </div>
+      <div id="leaderboard" class="leaderboard"></div>
+    </section>
+  </main>
+
+  <dialog id="recallDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer>
+    <span>Food Recall Wall is an independent visualization of public government recall data.</span>
+    <span>Always verify product codes, dates, and lot numbers with the issuing agency.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
