@@ -35,6 +35,11 @@
     <section class="controls" aria-label="Filters">
       <div class="filter-group" id="categoryFilters"></div>
       <div class="right-controls">
+        <label>STATE
+          <select id="stateFilter" aria-label="Filter recalls by state">
+            <option value="all">ALL STATES</option>
+          </select>
+        </label>
         <label>AGENCY
           <select id="agencyFilter">
             <option value="all">ALL</option>
@@ -55,7 +60,7 @@
     <section class="wall-shell">
       <div class="wall-head">
         <div>
-          <span class="section-code">US / ACTIVE RECALLS</span>
+          <span class="section-code" id="mapScopeLabel">US / ACTIVE RECALLS</span>
           <h2>Impact Wall</h2>
         </div>
         <div class="legend">
@@ -66,8 +71,9 @@
       </div>
 
       <div class="map-stage" id="mapStage">
-        <div class="us-grid" id="usGrid" aria-label="Block map of the United States"></div>
+        <svg class="us-map" id="usMap" viewBox="0 0 960 600" role="img" aria-label="Map of United States recall activity"></svg>
         <div class="recall-layer" id="recallLayer"></div>
+        <div class="map-hint">CLICK A STATE TO FILTER</div>
         <div class="nationwide-rail" id="nationwideRail"></div>
       </div>
     </section>
@@ -94,6 +100,8 @@
     <span>Always verify product codes, dates, and lot numbers with the issuing agency.</span>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script src="app.js"></script>
 </body>
-</html> 
+</html>
