@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A market-wall style dashboard for active U.S. food recalls from FDA and USDA FSIS." />
+  <meta name="description" content="A market-wall style dashboard for active U.S. human and pet food recalls from FDA and USDA FSIS." />
   <title>Food Recall Wall</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="map-fix.css" />
+  <link rel="stylesheet" href="pet-view.css" />
 </head>
 <body>
   <header class="topbar">
@@ -33,8 +34,17 @@
   </section>
 
   <main>
+    <nav class="view-switcher" id="viewTabs" aria-label="Recall type">
+      <button class="view-btn active" type="button" data-view="human">HUMAN FOOD</button>
+      <button class="view-btn" type="button" data-view="pet">PET FOOD</button>
+      <span class="pet-view-note">Switch views without changing state or agency filters</span>
+    </nav>
+
     <section class="controls" aria-label="Filters">
-      <div class="filter-group" id="categoryFilters"></div>
+      <div>
+        <div class="filter-group" id="categoryFilters"></div>
+        <div class="species-filter-row" id="speciesFilters" hidden></div>
+      </div>
       <div class="right-controls">
         <label>STATE
           <select id="stateFilter" aria-label="Filter recalls by state">
@@ -61,7 +71,7 @@
     <section class="wall-shell">
       <div class="wall-head">
         <div>
-          <span class="section-code" id="mapScopeLabel">US / ACTIVE RECALLS</span>
+          <span class="section-code" id="mapScopeLabel">US / HUMAN FOOD RECALLS</span>
           <h2>Impact Wall</h2>
         </div>
         <div class="legend">
@@ -105,5 +115,6 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script src="app.js"></script>
   <script src="map-fix.js"></script>
+  <script src="pet-view.js"></script>
 </body>
 </html>
