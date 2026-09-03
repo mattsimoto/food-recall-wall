@@ -1,16 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A market-wall style dashboard for active U.S. human and pet food recalls from FDA and USDA FSIS." />
   <title>Food Recall Wall</title>
+  <script>
+    try { document.documentElement.dataset.theme = localStorage.getItem('foodRecallWallTheme') || 'light'; } catch (_) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="map-fix.css" />
   <link rel="stylesheet" href="pet-view.css" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
   <header class="topbar">
@@ -18,10 +22,16 @@
       <div class="eyebrow">FDA + USDA FSIS // PUBLIC DATA</div>
       <h1>FOOD RECALL WALL</h1>
     </div>
-    <div class="market-clock">
-      <span class="pulse"></span>
-      <span id="statusText">LOADING MARKET</span>
-      <span id="updatedAt"></span>
+    <div class="topbar-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+        <span class="theme-word">DARK</span>
+      </button>
+      <div class="market-clock">
+        <span class="pulse"></span>
+        <span id="statusText">LOADING MARKET</span>
+        <span id="updatedAt"></span>
+      </div>
     </div>
   </header>
 
@@ -116,5 +126,6 @@
   <script src="app.js"></script>
   <script src="map-fix.js"></script>
   <script src="pet-view.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>
